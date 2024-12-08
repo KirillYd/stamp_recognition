@@ -1,0 +1,30 @@
+[
+    {
+        "center": {
+            "type": "text",
+            "name": "«ХМГЬГЙЙ»",
+            "inn": "8209430552"
+        },
+        "second_circle": "СЮЧЯФО   АЫШАВИУ   ЙЛЫЫ   ЦЧИЦТКЬЖ  КЕПА  ГФГ",
+        "third_circle": "КЙЫСШЗНЦЯ ШХБСЖЦ ЖТСПЯТГАВЭ СДЦПЯ ЗУШЧЫЭ УАЦУЕ ПХЕР ЗЖС",
+        "filename": "seal_1.png"
+    },
+    {
+        "center": {
+            "type": "emblem",
+            "name": "russia_emblem"
+        },
+        "second_circle": "ЕХЖВУЧЦЬП   ОЪРОЗПЦЧХ   СЙЧТА   ЮЧДГ  ХЗЭЪРТА",
+        "third_circle": "ЬЕШЬВСРЖЬ  ФЧГЖЙН  ХАЩСХХБЖЪЫ  ЬДРПВОЫ  ИСИЭЬХПЬ  ДТГНЖ",
+        "filename": "seal_2.png"
+    },
+    {
+        "center": {
+            "type": "emblem",
+            "name": "russia_emblem"
+        },
+        "second_circle": "ЧУЕЖГ    ОЙЬСМД   ДОШТМТЮК   КАЬНЯДФЗЯК   ЬЦТ",
+        "third_circle": "ПХДЫЕК УЩТМЧИЮОГМ ТЧЧЛЮ РДЮФЫЫБЗ ЫЭДЫВТЫПО МЭВСЕЛЛКЗКЮБ",
+        "filename": "seal_3.png"
+    }
+]
