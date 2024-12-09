@@ -42,13 +42,17 @@ def generate_seal(image_size=(256, 256)):
     image = Image.new('RGB', image_size, background_color)
     draw = ImageDraw.Draw(image)
 
+    # Вариант оформления внешнего кольца
+    variant = random.choice([1, 2, 3])
+
     center = (image_size[0] // 2, image_size[1] // 2)
     max_radius = min(center) - 10
-    radius = random.randint(max_radius - 35, max_radius - 20)
+    radius = random.randint(max_radius - 35, max_radius - 20)  # Радиус №1 круга
     circle_width = random.randint(2, 5)
 
-    metadata = {'center': None, 'second_circle': None, 'third_circle': None}
-    # 1 круг
+    metadata = {'center': None, 'second_circle': None}
+
+    # Круг №1
     draw.ellipse(
         [
             (center[0] - radius, center[1] - radius),
@@ -58,7 +62,7 @@ def generate_seal(image_size=(256, 256)):
         width=circle_width
     )
 
-    # Текст или герб в центре
+    # Внутреннее содержимое
     if random.choice(['text', 'emblem']) == 'text':
         company_name = '«' + ''.join(random.choices([chr(code) for code in range(ord('А'), ord('Я') + 1)], k=7)) + '»'
         inn_digits = ''.join(random.choices('0123456789', k=10))
@@ -66,7 +70,7 @@ def generate_seal(image_size=(256, 256)):
     else:
         metadata['center'] = {'type': 'emblem', 'name': 'russia_emblem'}
 
-    # 2 круг
+    # Круг №2
     outer_radius = radius + 15
     if outer_radius > max_radius:
         outer_radius = max_radius
@@ -80,35 +84,7 @@ def generate_seal(image_size=(256, 256)):
         width=circle_width
     )
 
-    # 3 круг
-    third_radius = outer_radius + 15
-    draw.ellipse(
-        [
-            (center[0] - third_radius, center[1] - third_radius),
-            (center[0] + third_radius, center[1] + third_radius)
-        ],
-        fill='blue'
-    )
-    draw.ellipse(
-        [
-            (center[0] - outer_radius, center[1] - outer_radius),
-            (center[0] + outer_radius, center[1] + outer_radius)
-        ],
-        fill='white'
-    )
-
-    draw.ellipse(
-        [
-            (center[0] - radius, center[1] - radius),
-            (center[0] + radius, center[1] + radius)
-        ],
-        outline='blue',
-        width=circle_width
-    )
-
-    # Текст для 3 круга
-    third_text = generate_text_with_even_spaces(55, 35, 50)
-    metadata['third_circle'] = third_text
+    # Подготовка шрифта
     fonts_dir = os.path.join(os.path.dirname(__file__), '..', 'fonts')
     if not os.path.exists(fonts_dir):
         raise FileNotFoundError(f"Папка со шрифтами не найдена: {fonts_dir}")
@@ -119,14 +95,136 @@ def generate_seal(image_size=(256, 256)):
     font_path = random.choice(font_files)
     font_size = 14
     font = ImageFont.truetype(font_path, font_size)
-    draw_text_on_circle(image, center, third_radius - 5, third_text, font, text_color='white', start_angle_deg=270, clockwise=True, flip=True)
 
-    # Текст для 2 круга
+
+    if variant == 2:
+        third_radius = outer_radius + 4
+    else:
+        third_radius = outer_radius + 15
+
+    if third_radius > max_radius + 20:
+        third_radius = max_radius + 20
+
+    if variant == 1:
+        # Синий фон
+        draw.ellipse(
+            [
+                (center[0] - third_radius, center[1] - third_radius),
+                (center[0] + third_radius, center[1] + third_radius)
+            ],
+            fill='blue'
+        )
+        draw.ellipse(
+            [
+                (center[0] - outer_radius, center[1] - outer_radius),
+                (center[0] + outer_radius, center[1] + outer_radius)
+            ],
+            fill='white'
+        )
+        third_text = generate_text_with_even_spaces(55, 35, 50)
+        metadata['third_circle'] = third_text
+        draw_text_on_circle(image, center, third_radius - 5, third_text, font, text_color='white', start_angle_deg=270, clockwise=True, flip=True)
+
+    elif variant == 2:
+        draw.ellipse(
+            [
+                (center[0] - third_radius, center[1] - third_radius),
+                (center[0] + third_radius, center[1] + third_radius)
+            ],
+            fill='blue'
+        )
+        draw.ellipse(
+            [
+                (center[0] - outer_radius, center[1] - outer_radius),
+                (center[0] + outer_radius, center[1] + outer_radius)
+            ],
+            fill='white'
+        )
+
+    else:
+        draw.ellipse(
+            [
+                (center[0] - third_radius, center[1] - third_radius),
+                (center[0] + third_radius, center[1] + third_radius)
+            ],
+            fill='white'
+        )
+        draw.ellipse(
+            [
+                (center[0] - outer_radius, center[1] - outer_radius),
+                (center[0] + outer_radius, center[1] + outer_radius)
+            ],
+            fill='white'
+        )
+        draw.ellipse(
+            [
+                (center[0] - third_radius, center[1] - third_radius),
+                (center[0] + third_radius, center[1] + third_radius)
+            ],
+            outline='blue',
+            width=circle_width
+        )
+        draw.ellipse(
+            [
+                (center[0] - outer_radius, center[1] - outer_radius),
+                (center[0] + outer_radius, center[1] + outer_radius)
+            ],
+            outline='blue',
+            width=circle_width
+        )
+        third_text = generate_text_with_even_spaces(55, 35, 50)
+        metadata['third_circle'] = third_text
+        draw_text_on_circle(image, center, third_radius - 5, third_text, font, text_color='blue', start_angle_deg=270, clockwise=True, flip=True)
+        fourth_radius = third_radius + 5
+        draw.ellipse(
+            [
+                (center[0] - fourth_radius, center[1] - fourth_radius),
+                (center[0] + fourth_radius, center[1] + fourth_radius)
+            ],
+            fill='blue'
+        )
+
+        draw.ellipse(
+            [
+                (center[0] - third_radius, center[1] - third_radius),
+                (center[0] + third_radius, center[1] + third_radius)
+            ],
+            fill='white'
+        )
+
+        draw.ellipse(
+            [
+                (center[0] - third_radius, center[1] - third_radius),
+                (center[0] + third_radius, center[1] + third_radius)
+            ],
+            outline='blue',
+            width=circle_width
+        )
+        draw.ellipse(
+            [
+                (center[0] - outer_radius, center[1] - outer_radius),
+                (center[0] + outer_radius, center[1] + outer_radius)
+            ],
+            outline='blue',
+            width=circle_width
+        )
+
+
     second_text = generate_text_with_even_spaces(45, 30, 40)
     metadata['second_circle'] = second_text
     draw_text_on_circle(image, center, outer_radius - 5, second_text, font, text_color='blue', start_angle_deg=270, clockwise=True, flip=True)
 
-    if random.choice(['text', 'emblem']) == 'text':
+
+    draw.ellipse(
+        [
+            (center[0] - radius, center[1] - radius),
+            (center[0] + radius, center[1] + radius)
+        ],
+        outline='blue',
+        width=circle_width
+    )
+
+    if metadata['center']['type'] == 'text':
         company_name = '«' + ''.join(random.choices([chr(code) for code in range(ord('А'), ord('Я') + 1)], k=7)) + '»'
         font_size = random.randint(20, 25)
         font = ImageFont.truetype(font_path, font_size)
@@ -151,7 +249,9 @@ def generate_seal(image_size=(256, 256)):
         emblem_y = center[1] - emblem.height // 2
         image.paste(emblem, (emblem_x, emblem_y), emblem)
 
-    return image,metadata
+    return image, metadata
+
+
 
 
 def draw_text_on_circle(image, center, radius, text, font, start_angle_deg=0, text_color='blue', clockwise=True, flip=False):
