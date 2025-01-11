@@ -1,0 +1,38 @@
+[
+    {
+        "center": {
+            "type": "emblem",
+            "name": "russia_emblem"
+        },
+        "second_circle": "ИЩФЯЕЯЭЗЮ    ЯБЖЪЪДЕЭТЦ    ЛЕЬГОЮЦЩЭ    ГЬЩРСЖ",
+        "third_circle": "ФТЕДКЩНЭЪ   ЭАЖЬМТКЦХБ   ШДЧЕВМПЮДЗ   ККЬЮЗЧТЫШР   ОКЪТБД   ПЩЕ",
+        "filename": "seal_1.jpg"
+    },
+    {
+        "center": {
+            "type": "emblem",
+            "name": "russia_emblem"
+        },
+        "second_circle": "НГЩПАЕХТХ    ТРСДКГЬ    ЯЩКЛЩМЧЧФА    ДЪЛЯОЫ    ЛЪ",
+        "third_circle": "ЭЕФЗНДГТШ   ХШВСЮП   БЪЭЕУА   ЛРСЩБИГЪТЬ   КГБЪПЩЛ   ММ",
+        "filename": "seal_2.jpg"
+    },
+    {
+        "center": {
+            "type": "text",
+            "name": "«ЪММЙЕЭИ»",
+            "inn": "4643781425"
+        },
+        "second_circle": "МЕЫМЬЯ  ОНЗМПОЕР  ЛПДЯФПВ  ПЧЛПГХ  ЭХШМНЕЩ  Ъ",
+        "third_circle": "ЪЕКЗУШКЖ  АЗБЕЪКЬХ  ТЯФЯОЯЩРШН  ЖСЭЭЗКХЯЭ  ШЮГНСТ  АП",
+        "filename": "seal_3.jpg"
+    },
+    {
+        "center": {
+            "type": "emblem",
+            "name": "russia_emblem"
+        },
+        "second_circle": "ЧБСЛЕЖДЩЕ    ДУЬАЛЕЪМЛО    ТИФУСД    ЮЭЬЯХ",
+        "filename": "seal_4.jpg"
+    }
+]
