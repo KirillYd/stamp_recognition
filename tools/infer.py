@@ -1,4 +1,3 @@
-# Copyright (c) OpenMMLab. All rights reserved.
 import os
 from argparse import ArgumentParser
 from typing import List
