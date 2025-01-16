@@ -34,7 +34,7 @@ pip3 install openmim
 git clone https://github.com/KirillYd/stamp_recognition.git
 cd stamp_recognition
 mim install -e .
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 
 ## Использование
