@@ -236,6 +236,10 @@ def main():
     model.load_weights('cp10.weights.h5')
 
     image_path = './dataset/images/'
+
+    if not os.path.exists("dataset/output_image2"):
+        os.mkdir("dataset/output_image2")
+    
     for img in os.listdir(image_path):
         init_args, call_args = parse_args()
         call_args["inputs"] = image_path + img
