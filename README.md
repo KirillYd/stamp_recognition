@@ -26,14 +26,14 @@
 * Автоматическое разделение текста на отдельные слова для дальнейшей обработки и анализа.
 
 ## Установка
-Для запуска проекта необходимо установить все зависимости, указанные в requirements.txt. Убедитесь, что у вас установлены следующие библиотеки:
-
-OpenCV
-NumPy
-Matplotlib
-Pygam
-SciPy
-TensorFlow и другие библиотеки, используемые в проекте.
+Для запуска проекта необходимо выполнить следующие команды:
+conda create -n stamp_recognition python=3.8 pytorch=1.10 cudatoolkit=11.3 torchvision -c pytorch -y
+conda activate stamp_recognition
+pip3 install openmim
+git clone https://github.com/KirillYd/stamp_recognition.git
+cd stamp_recognition
+mim install -e .
+pip install requirements.txt
 
 ## Использование
 * В файле infer.py на строке 231 можно указать количество генерируемых изображений.
